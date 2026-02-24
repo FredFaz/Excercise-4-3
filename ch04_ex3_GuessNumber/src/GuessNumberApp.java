@@ -14,27 +14,27 @@ public class GuessNumberApp {
         int number = (int) d;             // convert double to int
         number++;                         // int is >= 1 and <= limit
 
-        Scanner sc = new Scanner(System.in);            
+        Scanner sc = new Scanner(System.in);     
+
         int count = 1;
-        while (true) {
+        int guess = 0; //outside loop
+        
+        while (guess != number) {
             System.out.print("Your guess: ");
-            int guess = Integer.parseInt(sc.nextLine());
+            guess = Integer.parseInt(sc.nextLine());
             
             if (guess < 1 || guess > LIMIT) {
                 System.out.println("Invalid guess. Try again.");
-                continue;
-            }
-            
-            if (guess < number) {
-                System.out.println("Too low.");
             } else if (guess > number) {
                 System.out.println("Too high.");
+                count++;
+            } else if (guess < number) {
+                System.out.println("Too low.");
+                count++;
             } else {
                 System.out.println("You guessed it in " + count + " tries.\n");
-                break;
+                System.out.println("Bye!");
             }            
-            count++;
         }
-        System.out.println("Bye!");
-    }   
+    }
 }
